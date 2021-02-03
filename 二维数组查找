@@ -1,0 +1,50 @@
+//错误的代码
+public class Solution {
+    public boolean Find(int target, int [][] array) {
+        if(array==null)           //数组为空或者长度不对时均returnfalse
+            return false;
+        int row =array.length;
+        int cow=array[0].length;
+        if(row<=0||cow<=0)
+            return false;
+            //从二维数组的第一个数组内开始查找
+         row=0;
+        cow=cow-1;  //从该数组的末尾往前找
+        while(true){
+            //未查找到的时候跳出循环并返回false
+            if(row>=array.length||cow<0){
+                 return false;
+            }
+            //如果查找的当前值大于目标值时候，往前移，若小于时候，往下移
+            if(array[row][cow]==target){
+                return true;
+            }else if(array[row][cow]>target){
+                        cow--;
+                      }else{
+                            row++;
+                            }
+        }
+                  
+    }
+}
+
+//老方法，一个一个找吧
+public class Solution {
+    public boolean Find(int target, int [][] array) {
+        if(array==null)
+            return false;
+        int row =array.length;
+        int col=array[0].length;
+        if(row<=0||col<=0)
+            return false;
+        for(int i=0;i<row;i++){
+            if(target>=array[i][0]&&target<=array[i][col-1]){ //如果target不在该数组大小范围内，直接跳过
+                for(int j=0;j<col;j++){
+                    if(target==array[i][j])
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+}
