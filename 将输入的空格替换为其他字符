@@ -1,0 +1,26 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class StringBufferTest {
+    public static void main(String args[]) throws IOException {//异常应该捕获，别抛了（偷懒.jpg）
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); //使用字符流防止输入中文时候乱码
+     
+        String str;
+        while ((str=bf.readLine())!=null){
+            char[] chars = str.toCharArray();
+            StringBuffer sb = new StringBuffer();
+            for(char c:chars){    //替换的代码实现
+                if (c==' '){
+                    sb.append("%20");
+                }else{
+                    sb.append(c);
+                }
+
+            }
+            System.out.println(sb.toString());
+        }
+        bf.close();
+    }
+}
